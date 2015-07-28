@@ -1,3 +1,31 @@
+function getsameitems(cartitems) {
+  var allItems = [];
+  var items = [];
+  allItems = loadAllItems();
+  cartitems.forEach(function(item) {
+    for (var i = 0; i < allItems.length; i++) {
+      if (item === allItems[i].barcode)
+        items.push({
+          barcode: item,
+          name: allItems[i].name,
+          price: allItems[i].price,
+          unit: allItems[i].unit,
+          count: 1
+        });
+    }
+    return items;
+  })
+  return items;
+}
+
+function getsumtotal(val) {
+  var sumtotal = 0;
+
+  val.forEach(function(item) {
+    sumtotal += item.count * item.price;
+  });
+  return sumtotal.toFixed(2);
+}
 function printReceipt(inputs) {
   var bill = '';
   var cartlist = [];
@@ -23,6 +51,7 @@ function getcartlist(cartItem, cartlist) {
       return;
     }
   };
+
   cartlist.push({
     barcode: cartItem.barcode,
     name: cartItem.name,

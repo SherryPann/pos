@@ -4,10 +4,10 @@ function Pos(cart,scanner){
 }
 
 
-Pos.prototype.getRecerption = function(promotionitems){
+Pos.prototype.getReceiption = function(){
   var cartitemsString = '';
   var receipt = new Receiption();
-  var receiptString = receipt.getReceipt(this.cart, promotionitems);
-
+  cartitemsString = receipt.getReceipt(this.cart);
+//console.log(this.cart.cartItems);
   return cartitemsString;
 }

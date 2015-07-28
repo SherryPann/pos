@@ -2,15 +2,14 @@
 function cart_item(barcode,count){
   this.barcode = barcode ;
   this.count = count;
-  this._item = null;
-
 };
 
 
 
 cart_item.prototype.getItem = function(){
-  var allItems = loadAllItems();
-  var _this = this;
+
+var allItems = loadAllItems();
+var _this = this;
   if(this._item){
     return this._item;
   }
@@ -22,14 +21,25 @@ cart_item.prototype.getItem = function(){
       }
     });
     this._item = item;
-    return _item;
+  //  console.log(this._item);
+    return this._item;
   }
 
   };
-
+ //  var allItems = loadAllItems();
+ //  console.log( allItems);
+ // for(var i = 0; i < allItems.length; i++){
+ //
+ //   if(allItems[i].barcode === this.barcode){
+ //     var item = new allItems[i];
+ //     return item;
+ //
+ //   }
+ // }
   cart_item.prototype.getName = function(){
     var item = this.getItem();
     return item.name;
+
   };
 
   cart_item.prototype.getUnit = function(){
@@ -40,20 +50,20 @@ cart_item.prototype.getItem = function(){
   cart_item.prototype.getPrice = function(){
     var item = this.getItem();
     return item.price;
+
   };
 
 cart_item.prototype.getCount = function(){
   return this.count;
 };
 
-cart_item.prototype.getPromotionCount = function(){
-  var promotionCount = 0;
-  //
-
-  return promotionCount;
-}
 
 cart_item.prototype.getSubtotal = function(){
-  var subtotal = this._item.price * (this._item.count - this.getpromotionCount()) ;
+  //console.log(cartitem);
+  var subtotal = 0;
+  //var price = cartitem.getPrice();
+  var promotionitem = new Promotionitem();
+ var subtotal = this.getPrice * (this.count - promotionitem.getPromotionCount(this.barcode,this.count)) ;
   return subtotal;
-  }
+//  console.log(subtotal);
+}//
