@@ -1,19 +1,17 @@
-
-function cart_item(barcode,count){
-  this.barcode = barcode ;
+function CartItem(barcode, count) {
+  this.barcode = barcode;
   this.count = count;
 };
 
 
 
-cart_item.prototype.getItem = function(){
+CartItem.prototype.getItem = function() {
 
-var allItems = loadAllItems();
-var _this = this;
-  if(this._item){
+  var allItems = loadAllItems();
+  var _this = this;
+  if (this._item) {
     return this._item;
-  }
-  else {
+  } else {
     var item;
     allItems.forEach(function(Item) {
       if (Item.barcode === _this.barcode) {
@@ -21,49 +19,41 @@ var _this = this;
       }
     });
     this._item = item;
-  //  console.log(this._item);
     return this._item;
   }
 
-  };
- //  var allItems = loadAllItems();
- //  console.log( allItems);
- // for(var i = 0; i < allItems.length; i++){
- //
- //   if(allItems[i].barcode === this.barcode){
- //     var item = new allItems[i];
- //     return item;
- //
- //   }
- // }
-  cart_item.prototype.getName = function(){
-    var item = this.getItem();
-    return item.name;
+};
 
-  };
+CartItem.prototype.getName = function() {
+  var item = this.getItem();
+  return item.name;
 
-  cart_item.prototype.getUnit = function(){
-    var item = this.getItem();
-    return item.unit;
-  };
+};
 
-  cart_item.prototype.getPrice = function(){
-    var item = this.getItem();
+CartItem.prototype.getUnit = function() {
+  var item = this.getItem();
+  return item.unit;
+};
+
+CartItem.prototype.getPrice = function() {
+  var item = this.getItem();
+  //alert(item.name);
+  if (item) {
     return item.price;
+  }
+};
 
-  };
-
-cart_item.prototype.getCount = function(){
+CartItem.prototype.getCount = function() {
   return this.count;
 };
 
 
-cart_item.prototype.getSubtotal = function(){
-  //console.log(cartitem);
+CartItem.prototype.getSubtotal = function() {
   var subtotal = 0;
-  //var price = cartitem.getPrice();
   var promotionitem = new Promotionitem();
- var subtotal = this.getPrice * (this.count - promotionitem.getPromotionCount(this.barcode,this.count)) ;
-  return subtotal;
-//  console.log(subtotal);
-}//
+  var subtotal = this.getPrice() * (this.count - promotionitem.getPromotionCount(this.barcode, this.count));
+  if (subtotal) {
+    return subtotal;
+  }
+
+}

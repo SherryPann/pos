@@ -12,8 +12,3 @@ function printReceipt(inputs) {
   console.log(receiption);
 
 }
-
-/*
-var promotion_stratage = pos.processPromotion();
-
-*/
